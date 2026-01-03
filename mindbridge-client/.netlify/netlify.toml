@@ -1,0 +1,43 @@
+redirectsOrigin = "config"
+plugins = []
+functionsDirectory = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+headers = []
+
+[functions]
+
+[functions."*"]
+node_bundler = "esbuild"
+
+[build]
+publish = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\mindbridge-client\\dist"
+publishOrigin = "config"
+commandOrigin = "config"
+command = "npm run build"
+functions = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\netlify\\functions"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200.0
+force = false
+
+[redirects.query]
+
+[redirects.conditions]
+
+[redirects.headers]

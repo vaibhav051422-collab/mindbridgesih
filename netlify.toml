@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\dist"
+  functions = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\netlify\\functions"
+
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
