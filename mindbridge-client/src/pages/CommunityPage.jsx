@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FiHeart, FiMessageCircle, FiPlus, FiX } from 'react-icons/fi';
-import { supabase } from '../supabaseClient'; // ✅ Correct path to your Supabase client
+import { supabase } from '../supabaseClient'; 
 
 const CommunityPage = () => {
   const [posts, setPosts] = useState([]);
@@ -32,7 +32,7 @@ const CommunityPage = () => {
     fetchUser();
   }, []);
 
-  // ✅ Fetch posts from Supabase
+
   const fetchPosts = async () => {
     const { data, error } = await supabase
       .from('community_posts')
@@ -91,7 +91,7 @@ const CommunityPage = () => {
     }
   };
 
-  // ✅ Handle liking a post and update in Supabase
+
   const handleLike = async (postId) => {
     const post = posts.find(p => p.id === postId);
     if (!post) return;
