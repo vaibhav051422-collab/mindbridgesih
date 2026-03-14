@@ -53,8 +53,8 @@ const MoodTrackingPage = () => {
       mood: selectedMood,
       intensity,
       notes,
-      tags,        // ✅ Ensure tags[] column exists, else use JSON.stringify(tags)
-      activities,  // ✅ Same for activities[]
+      tags,       
+      activities,  
       created_at: new Date().toISOString(),
     };
 

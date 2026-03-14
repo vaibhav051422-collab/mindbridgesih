@@ -28,29 +28,29 @@ const DashboardPage = () => {
     const fetchUserAndData = async () => {
       setLoading(true);
 
-      // ✅ Get active Supabase session
+      
       const { data: { user }, error: userError } = await supabase.auth.getUser();
       if (userError || !user) {
-        console.error("❌ No active Supabase session:", userError);
+        console.error("No active Supabase session:", userError);
         setUser(null);
         setChartData([]);
         setLoading(false);
         return;
       }
 
-      setUser(user); // store for display
+      setUser(user);
 
-      // ✅ Fetch mood entries securely (RLS will auto-filter by auth.uid())
+      
       const { data, error } = await supabase
         .from("mood_entries")
         .select("created_at, intensity")
         .order("created_at", { ascending: true });
 
       if (error) {
-        console.error("❌ Error fetching mood data:", error);
+        console.error("Error fetching mood data:", error);
         setChartData([]);
       } else {
-        console.log("✅ Supabase mood data:", data);
+        console.log("Supabase mood data:", data);
         const formattedData = data.slice(-7).map((entry) => ({
           date: new Date(entry.created_at).toLocaleDateString("en-US", {
             month: "short",
@@ -83,7 +83,6 @@ const DashboardPage = () => {
 
   return (
     <div className="p-6 md:p-8 min-h-full">
-      {/* Header */}
       <header className="bg-gradient-to-r from-blue-600 to-indigo-500 text-white p-8 rounded-2xl shadow-lg mb-10">
         <div className="flex flex-wrap justify-between items-center gap-4">
           <div>
@@ -97,7 +96,6 @@ const DashboardPage = () => {
         </div>
       </header>
 
-      {/* Quote */}
       <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200/80 mb-10 flex items-center">
         <div className="p-4 bg-yellow-100 rounded-full mr-5">
           <FiSunrise className="w-6 h-6 text-yellow-500" />
@@ -108,7 +106,6 @@ const DashboardPage = () => {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {statsCards.map((card) => (
           <div
@@ -128,7 +125,6 @@ const DashboardPage = () => {
         ))}
       </div>
 
-      {/* Google Meet */}
       <div className="mt-10 p-6 bg-white rounded-2xl shadow-md border border-gray-200/80 max-w-md mx-auto mb-10">
         <h2 className="text-xl font-bold mb-4 flex items-center">
           <FiVideo className="mr-2 text-green-600" /> Join a Google Meet
@@ -146,7 +142,6 @@ const DashboardPage = () => {
         </a>
       </div>
 
-      {/* Mood Trends */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-md border border-gray-200/80">
           <div className="flex justify-between items-center mb-4">
@@ -195,7 +190,6 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        {/* Quick Actions */}
         <div className="bg-white p-6 rounded-2xl shadow-md border border-gray-200/80">
           <h2 className="text-xl font-bold text-gray-800 mb-6">Quick Actions</h2>
           <div className="space-y-4">

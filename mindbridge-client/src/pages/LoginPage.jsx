@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FiEye, FiEyeOff, FiUser, FiMail, FiLock, FiShield } from 'react-icons/fi';
-import { supabase } from "../supabaseClient"; // ✅ Correct import path
+import { supabase } from "../supabaseClient";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
@@ -17,11 +17,9 @@ const LoginPage = () => {
   const [connectionStatus, setConnectionStatus] = useState('checking');
   const navigate = useNavigate();
 
-  // Test Supabase connection on component mount
   useEffect(() => {
     const testConnection = async () => {
       try {
-        // Try to get the current session (this will test the connection)
         const { error } = await supabase.auth.getSession();
         if (error && (error.message.includes('Failed to fetch') || error.message.includes('NetworkError'))) {
           setConnectionStatus('failed');
@@ -59,7 +57,6 @@ const LoginPage = () => {
         });
 
         if (error) {
-          // Better error handling for network issues
           if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
             throw new Error('Network error: Please check your internet connection and try again. If the problem persists, the Supabase service might be unavailable.');
           }
@@ -79,7 +76,6 @@ const LoginPage = () => {
         });
 
         if (error) {
-          // Better error handling for network issues
           if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
             throw new Error('Network error: Please check your internet connection and try again. If the problem persists, the Supabase service might be unavailable.');
           }
@@ -88,11 +84,9 @@ const LoginPage = () => {
         result = data;
       }
 
-      // ✅ Navigate after successful login/signup
       if (result?.session) {
         navigate('/dashboard');
       } else if (!isLogin) {
-        // For signup, show success message if email confirmation is required
         setErrorMsg('Account created! Please check your email to verify your account.');
       }
     } catch (error) {
@@ -133,7 +127,6 @@ const LoginPage = () => {
       className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8 bg-cover bg-center relative"
       style={{ backgroundImage: "url('/images/login.png')" }}
     >
-      {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
       <div className="relative sm:mx-auto sm:w-full sm:max-w-md">
@@ -155,7 +148,7 @@ const LoginPage = () => {
         )}
         {connectionStatus === 'failed' && (
           <p className="text-red-400 text-center mt-2 text-xs bg-red-900/50 p-2 rounded">
-            ⚠️ Connection issue detected. Please verify your Supabase configuration.
+            Connection issue detected. Please verify your Supabase configuration.
           </p>
         )}
         {errorMsg && (

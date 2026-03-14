@@ -1,11 +1,9 @@
 [build]
+  # Run the build inside the React app folder
+  base = "mindbridge-client"
   command = "npm run build"
-  publish = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\dist"
-  functions = "C:\\Users\\HP\\mindbridge-project\\mindbridge-client\\netlify\\functions"
-
-
-[functions]
-  node_bundler = "esbuild"
+  # Folder that Vite outputs after build - relative to base directory
+  publish = "dist"
 
 [[redirects]]
   from = "/*"

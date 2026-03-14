@@ -18,7 +18,6 @@ const CommunityPage = () => {
     { id: 'motivation', label: 'Motivation', color: 'bg-purple-100 text-purple-800' }
   ];
 
-  // ✅ Get current session user
   useEffect(() => {
     const fetchUser = async () => {
       const { data: { session } } = await supabase.auth.getSession();
